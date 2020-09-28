@@ -12,6 +12,10 @@ import configparser
 
 from file_time.Configuration import Configuration
 
+"""
+该方法是从网上查来，借鉴一下没有调用
+"""
+
 
 def modifyFileTime(filePath, createTime, modifyTime, accessTime, offset):
     """
@@ -50,6 +54,10 @@ configuration = Configuration()
 
 count = 0
 
+"""
+读取配置文件
+"""
+
 
 def read_config():
     config.read("config.ini", encoding="utf-8-sig")
@@ -75,6 +83,11 @@ def read_config():
     # configuration.set_add_sec(add_second)
 
     configuration.calculation_time_random_delta()
+
+
+"""
+遍历文件夹这里只遍历一层就退出
+"""
 
 
 def start_walk():
@@ -126,7 +139,7 @@ def modifyFileAllTime(filePath, createTime):
 if __name__ == '__main__':
     read_config()
     start_walk()
-    input("点击两下回车键结束")
+    input("点击回车键结束")
 
 # 调用
 # cTime = "2019-02-02 00:01:02"  # 创建时间

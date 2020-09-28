@@ -35,9 +35,17 @@ class Configuration:
     def set_add_sec(self, value):
         self.add_sec = value
 
+    """
+    获取起始时间的秒级别
+    """
+
     def get_start_day_mktime(self):
         start = time.strptime(self.start_day + " 00:00:00", "%Y-%m-%d %H:%M:%S")
         return int(time.mktime(start))
+
+    """
+    处理随机时刻的数据
+    """
 
     def calculation_time_random_delta(self):
         start = time.strptime("1971-01-01 " + self.time_random_start, "%Y-%m-%d %H:%M:%S")
@@ -50,9 +58,17 @@ class Configuration:
         self.offset_sec = start_stamp - const_stamp
         self.get_increment_day_mktime()
 
+    """
+    获取随机时间段里面的随机时间，起始时间+随机区间值
+    """
+
     def get_random_delta(self):
         print(random.randint(0, self.time_range))
         return self.offset_sec + random.randint(0, self.time_range)
+
+    """
+    按照自增天数转换为秒
+    """
 
     def get_increment_day_mktime(self):
         return int(self.increment_day) * 24 * 60 * 60
