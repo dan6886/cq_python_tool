@@ -98,7 +98,10 @@ def start_walk():
         break
 
     for file_name in all_files:
-        file_name = configuration.root + file_name
+
+        path_abs = os.path.join(configuration.root,file_name)
+
+        file_name =path_abs
         start_time = configuration.get_start_day_mktime()
         add_time = configuration.get_increment_day_mktime() * count
         rand_time = configuration.get_random_delta()
