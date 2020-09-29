@@ -12,7 +12,6 @@ class Configuration:
         self.increment_day = 0
         self.offset_sec = 0
         self.root = ""
-        # self.add_sec = 0
 
     def set_start_day(self, value):
         self.start_day = value
@@ -28,12 +27,6 @@ class Configuration:
 
     def set_root(self, value):
         self.root = value
-
-    def set_add_min(self, value):
-        self.add_min = value
-
-    def set_add_sec(self, value):
-        self.add_sec = value
 
     """
     获取起始时间的秒级别
