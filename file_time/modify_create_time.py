@@ -17,7 +17,7 @@ from file_time.Configuration import Configuration
 """
 
 
-def modifyFileTime(filePath, createTime, modifyTime, accessTime, offset):
+def modify_file_time(filePath, createTime, modifyTime, accessTime, offset):
     """
     用来修改任意文件的相关时间属性，时间格式：YYYY-MM-DD HH:MM:SS 例如：2019-02-02 00:01:02
     :param filePath: 文件路径名
@@ -28,9 +28,9 @@ def modifyFileTime(filePath, createTime, modifyTime, accessTime, offset):
     """
     try:
         format = "%Y-%m-%d %H:%M:%S"  # 时间格式
-        cTime_t = timeOffsetAndStruct(createTime, format, offset[0])
-        mTime_t = timeOffsetAndStruct(modifyTime, format, offset[1])
-        aTime_t = timeOffsetAndStruct(accessTime, format, offset[2])
+        cTime_t = time_offset_struct(createTime, format, offset[0])
+        mTime_t = time_offset_struct(modifyTime, format, offset[1])
+        aTime_t = time_offset_struct(accessTime, format, offset[2])
 
         fh = CreateFile(filePath, GENERIC_READ | GENERIC_WRITE, 0, None, OPEN_EXISTING, 0, 0)
         createTimes, accessTimes, modifyTimes = GetFileTime(fh)
@@ -45,7 +45,7 @@ def modifyFileTime(filePath, createTime, modifyTime, accessTime, offset):
         return 1
 
 
-def timeOffsetAndStruct(times, format, offset):
+def time_offset_struct(times, format, offset):
     return time.localtime(time.mktime(time.strptime(times, format)) + offset)
 
 
@@ -98,22 +98,21 @@ def start_walk():
         break
 
     for file_name in all_files:
+        path_abs = os.path.join(configuration.root, file_name)
 
-        path_abs = os.path.join(configuration.root,file_name)
-
-        file_name =path_abs
+        file_name = path_abs
         start_time = configuration.get_start_day_mktime()
         add_time = configuration.get_increment_day_mktime() * count
         rand_time = configuration.get_random_delta()
         result = int(start_time) + int(add_time) + int(rand_time)
         print(time.localtime(result))
         result_time = time.localtime(result)
-        code = modifyFileAllTime(file_name, result_time)
+        code = modify_file_all_time(file_name, result_time)
         print(code)
         count = count + 1
 
 
-def modifyFileAllTime(filePath, createTime):
+def modify_file_all_time(filePath, createTime):
     """
     用来修改任意文件的相关时间属性，时间格式：YYYY-MM-DD HH:MM:SS 例如：2019-02-02 00:01:02
     :param filePath: 文件路径名
@@ -143,14 +142,3 @@ if __name__ == '__main__':
     read_config()
     start_walk()
     input("点击回车键结束")
-
-# 调用
-# cTime = "2019-02-02 00:01:02"  # 创建时间
-# mTime = "2019-02-02 00:01:03"  # 修改时间
-# aTime = "2019-02-02 00:01:04"  # 访问时间
-#
-# fName = r"D:\g.log"  # 文件路径
-# offset = (0, 1, 2)  # 偏移的秒数
-# r = modifyFileTime(fName, cTime, mTime, aTime, offset)
-# if r == 0: print('修改完成')
-# if r == 1: print('修改失败')
