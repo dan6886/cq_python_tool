@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>404</width>
-    <height>321</height>
+    <width>400</width>
+    <height>220</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>tool</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="formLayoutWidget">
@@ -92,7 +92,7 @@
      <item row="5" column="0" colspan="2">
       <widget class="QPushButton" name="run">
        <property name="text">
-        <string>起飞</string>
+        <string>运行</string>
        </property>
       </widget>
      </item>
@@ -104,7 +104,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>404</width>
+     <width>400</width>
      <height>22</height>
     </rect>
    </property>

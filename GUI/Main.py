@@ -109,10 +109,10 @@ def on_run():
         configuration.calculation_time_random_delta()
         has_failed = start_walk()
         if not has_failed:
-            QMessageBox(QMessageBox.Question, '恭喜', "全部完成").exec()
+            QMessageBox(QMessageBox.Warning, '恭喜', "全部完成").exec()
         pass
     else:
-        QMessageBox(QMessageBox.Question, '异常', msg).exec()
+        QMessageBox(QMessageBox.Information, '异常', msg).exec()
         pass
 
 
@@ -191,23 +191,21 @@ def modify_file_all_time(file_path, create_time):
         return 1
 
 
+def init_data(root_ui):
+    root_ui.start_day.setDate(QDate.currentDate())
+    root_ui.interval.setValue(1)
+    root_ui.random_time_start.setTime(QTime(17, 0, 0))
+    root_ui.random_time_end.setTime(QTime(17, 0, 0))
+
+
 configuration = Configuration()
-
-
-def init_data(ui):
-    ui.start_day.setDate(QDate.currentDate())
-    ui.interval.setValue(1)
-    ui.random_time_start.setTime(QTime(17, 0, 0))
-    ui.random_time_end.setTime(QTime(17, 0, 0))
-
-
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
+    MainWindow.setFixedSize(MainWindow.width(), MainWindow.height())
     connect_event(ui)
     init_data(ui)
-
     MainWindow.show()
     sys.exit(app.exec_())
