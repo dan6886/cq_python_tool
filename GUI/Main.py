@@ -9,7 +9,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
 
 from GUI.Configuration import Configuration
-from GUI.untitled import Ui_MainWindow
+from GUI.root_ui import Ui_MainWindow
 from win32file import CreateFile, SetFileTime, GetFileTime, CloseHandle
 from win32file import GENERIC_READ, GENERIC_WRITE, OPEN_EXISTING
 from pywintypes import Time
@@ -21,14 +21,13 @@ def connect_event(main_ui):
     """
     连接信号注册监听
     """
-    main_ui.start_day.dateChanged.connect(on_date_changed)  # 点击按钮，执行btnFn方法
-    main_ui.interval.valueChanged.connect(on_interval_changed)  # 点击按钮，执行btnFn方法
-    main_ui.random_time_start.timeChanged.connect(on_random_start_time_changed)  # 点击按钮，执行btnFn方法
-    main_ui.random_time_end.timeChanged.connect(on_random_end_time_changed)  # 点击按钮，执行btnFn方法
-    main_ui.folder.textChanged.connect(on_folder_changed)  # 点击按钮，执行btnFn方法
-    main_ui.set_folder.clicked.connect(partial(on_folder_selected, main_ui))  # 点击按钮，执行btnFn方法
-    main_ui.run.clicked.connect(on_run)  # 点击按钮，执行btnFn方法
-    pass
+    main_ui.start_day.dateChanged.connect(on_date_changed)  # 开始时间改变监听
+    main_ui.interval.valueChanged.connect(on_interval_changed)  # 周期时间改变监听
+    main_ui.random_time_start.timeChanged.connect(on_random_start_time_changed)  # 随机时刻起点改变监听
+    main_ui.random_time_end.timeChanged.connect(on_random_end_time_changed)  # 随机时刻终点改变监听
+    main_ui.folder.textChanged.connect(on_folder_changed)  # 文件路径改变监听
+    main_ui.set_folder.clicked.connect(partial(on_folder_selected, main_ui))  # 选择文件夹按钮监听
+    main_ui.run.clicked.connect(on_run)  # 执行按钮监听
 
 
 def on_date_changed(date):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'untitled.ui'
+# Form implementation generated from reading ui file 'root_ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(404, 321)
+        MainWindow.resize(400, 220)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.formLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -62,7 +62,7 @@ class Ui_MainWindow(object):
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.SpanningRole, self.run)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 404, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 400, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -74,7 +74,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "tool"))
         self.label.setText(_translate("MainWindow", "起始日期"))
         self.label_4.setText(_translate("MainWindow", "周期天数"))
         self.label_2.setText(_translate("MainWindow", "当天随机时间起点"))
@@ -82,4 +82,4 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "当天随机时间终点"))
         self.random_time_end.setDisplayFormat(_translate("MainWindow", "HH:mm:ss"))
         self.set_folder.setText(_translate("MainWindow", "选择文件夹"))
-        self.run.setText(_translate("MainWindow", "起飞"))
+        self.run.setText(_translate("MainWindow", "运行"))
