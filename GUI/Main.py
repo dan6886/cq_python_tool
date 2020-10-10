@@ -204,6 +204,7 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.setFixedSize(MainWindow.width(), MainWindow.height())
+    ui.start_day.setCalendarPopup(True)
     connect_event(ui)
     init_data(ui)
     MainWindow.show()

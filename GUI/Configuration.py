@@ -49,25 +49,23 @@ class Configuration:
     def get_root(self):
         return self.root
 
-    """
-    处理随机时刻的数据
-    """
-
     def calculation_time_random_delta(self):
+        """
+        处理随机时刻的数据
+        :return:
+        """
         self.time_range = self.get_time_random_end() - self.get_time_random_start()
         self.offset_sec = self.get_time_random_start() - Configuration.STANDARD_TIME
 
-    """
-    获取随机时间段里面的随机时间，起始时间+随机区间值
-    """
-
     def get_random_delta(self):
+        """
+        获取随机时间段里面的随机时间，起始时间+随机区间值
+        """
         print(random.randint(0, self.time_range))
         return self.offset_sec + random.randint(0, self.time_range)
 
-    """
-    按照自增天数转换为秒
-    """
-
     def get_increment_day_mktime(self):
+        """
+        按照自增天数转换为秒
+        """
         return int(self.increment_day) * 24 * 60 * 60
