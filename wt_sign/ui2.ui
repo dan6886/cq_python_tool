@@ -10,6 +10,9 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -17,11 +20,14 @@
    <widget class="QTextBrowser" name="log">
     <property name="geometry">
      <rect>
-      <x>-5</x>
+      <x>0</x>
       <y>350</y>
       <width>1091</width>
       <height>261</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string extracomment="你好"/>
     </property>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -35,17 +41,23 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTreeView" name="input"/>
+      <widget class="QTreeView" name="input">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="toolTip">
+        <string>选择一个准备签名的文件，中间调整好参数之后点击【签名】按钮即可开始</string>
+       </property>
+       <attribute name="headerCascadingSectionResizes">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="headerStretchLastSection">
+        <bool>false</bool>
+       </attribute>
+      </widget>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>test</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="QComboBox" name="platform">
          <property name="editable">
@@ -62,13 +74,44 @@
        </item>
        <item>
         <widget class="QPushButton" name="sign">
+         <property name="toolTip">
+          <string>根据左侧选择的文件进行签名，签名返回文件存放在右侧窗口，返回文件名会按照签名参数和时间的拼接</string>
+         </property>
          <property name="text">
           <string>&lt;&lt;签名</string>
          </property>
         </widget>
        </item>
        <item>
+        <widget class="QLineEdit" name="child_dirs">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>签名文件在存放在当前目录的子目录下面，请填写子目录名如：apks/today/，或空为当前目录存储</string>
+         </property>
+         <property name="placeholderText">
+          <string>存放子目录</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="install">
+         <property name="toolTip">
+          <string>安装右侧文件</string>
+         </property>
          <property name="text">
           <string>安装&gt;&gt;</string>
          </property>
@@ -77,7 +120,14 @@
       </layout>
      </item>
      <item>
-      <widget class="QTreeView" name="output"/>
+      <widget class="QTreeView" name="output">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="toolTip">
+        <string>签名返回的文件存储路径，可指定存放在子目录下面，默认存储在当前目录</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

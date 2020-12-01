@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import time
 from threading import Thread
 
 from PyQt5.QtCore import pyqtSignal
@@ -33,7 +34,18 @@ class Task(Thread):
         # p.wait()
         # code = p.returncode
         # p.kill()
-        r = os.system(command=self.cmd)
-        print(r)
-        self.callback(type="result", name=self.name, value=r)
+
+        myPopenObj = subprocess.Popen(self.cmd)
+        try:
+            myPopenObj.wait()
+        except Exception as e:
+            print("===== process timeout ======")
+            myPopenObj.kill()
+            return None
+        # r = os.system(command=self.cmd)
+
+        # 休息3s保证命令执行完成
+        time.sleep(3)
+        print(myPopenObj.returncode)
+        self.callback(type="result", name=self.name, value=myPopenObj.returncode)
         self.callback(type="status", name=self.name, value=False)
